@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đi Rồi Biết – Tour bí mật quanh TP.HCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #F4F7F6;
+  --surface: #FFFFFF;
+  --ink: #12202B;
+  --muted: #4C5F6B;
+  --teal: #0E7C7B;
+  --teal-light: #E6F4F4;
+  --red: #D62839;
+  --sun: #FFC857;
+  --line: #E1E8E7;
+  --bar: #12202B;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1A22;
+    --surface: #152733;
+    --ink: #EAF3F1;
+    --muted: #9DB3BC;
+    --teal: #3FC1BE;
+    --teal-light: #1A343B;
+    --red: #FF6B78;
+    --line: #25404E;
+    --bar: #EAF3F1;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0D1A22;
+  --surface: #152733;
+  --ink: #EAF3F1;
+  --muted: #9DB3BC;
+  --teal: #3FC1BE;
+  --teal-light: #1A343B;
+  --red: #FF6B78;
+  --line: #25404E;
+  --bar: #EAF3F1;
+}
+
+html {
+  scroll-padding-top: calc(76px + env(safe-area-inset-top, 0px));
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Baloo 2", "Be Vietnam Pro", system-ui, sans-serif;
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 72px 0;
+}
+
+h2 {
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 0 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--red);
+  color: #fff;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(214, 40, 57, 0.25);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(214, 40, 57, 0.35);
+}
+
+.btn.alt {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: none;
+}
+
+.btn.alt:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: rgba(244, 247, 246, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  gap: 16px;
+}
+
+.logo {
+  font: 800 24px "Baloo 2", sans-serif;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo b {
+  color: var(--red);
+  font-weight: 800;
+}
+
+.logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--sun);
+  background: #fff;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+nav a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--teal);
+}
+
+nav .btn {
+  padding: 8px 20px;
+  font-size: 15px;
+  color: #fff;
+}
+
+@media(max-width: 820px) {
+  nav a:not(.btn) {
+    display: none;
+  }
+}
+
+.hero {
+  padding: 60px 0 72px;
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media(max-width: 860px) {
+  .hero .wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero h1 {
+  font-size: clamp(52px, 9vw, 92px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--teal);
+}
+
+.hero p {
+  font-size: 19px;
+  color: var(--muted);
+  max-width: 44ch;
+  margin: 20px 0 28px;
+}
+
+.ticket {
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  transform: rotate(2deg);
+  box-shadow: 10px 10px 0 var(--sun);
+  transition: transform 0.3s ease;
+}
+
+.ticket:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.ticket::before, .ticket::after {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 55%;
+  width: 26px;
+  height: 26px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.ticket::after {
+  left: auto;
+  right: -14px;
+}
+
+.ticket h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 15px;
+}
+
+.row dt {
+  color: var(--muted);
+}
+
+.row dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.redact {
+  display: inline-block;
+  height: 1.1em;
+  vertical-align: middle;
+  background: var(--bar);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.reveal .redact {
+  background: transparent;
+  height: auto;
+}
+
+.hint {
+  display: none;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.reveal .hint {
+  display: inline;
+}
+
+.reveal .mask {
+  display: none;
+}
+
+.ticket button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.about {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.slogan {
+  font: 800 clamp(26px, 4.4vw, 40px) "Baloo 2", sans-serif;
+  color: var(--teal);
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.vm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media(max-width: 760px) {
+  .vm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vm div {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.vm h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: var(--red);
+}
+
+.vm p {
+  margin: 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  counter-reset: s;
+  padding: 0;
+  list-style: none;
+}
+
+@media(max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 520px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.steps li {
+  counter-increment: s;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.steps li::before {
+  content: counter(s);
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--sun);
+  color: #12202B;
+  font: 800 20px "Baloo 2", sans-serif;
+  margin-bottom: 14px;
+}
+
+.steps h3 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.steps p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.tab {
+  font: 600 16px "Be Vietnam Pro", sans-serif;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.panel {
+  display: none;
+}
+
+.panel.on {
+  display: block;
+}
+
+.panel .q {
+  font: 700 22px "Baloo 2", sans-serif;
+  color: var(--teal);
+  margin: 0 0 18px;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.items li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--teal);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.items strong {
+  display: block;
+  font: 800 19px "Baloo 2", sans-serif;
+  margin-bottom: 4px;
+}
+
+.items span {
+  font-size: 14.5px;
+  color: var(--muted);
+  display: block;
+  line-height: 1.5;
+}
+
+.heal-wrap {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 24px 0 36px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+}
+
+.heal-wrap img {
+  width: 180px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+  flex: 0 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.heal-wrap p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 52ch;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.tours {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.tour {
+  border-radius: 20px;
+  padding: 26px;
+  color: #12202B;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 240px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.tour h3 {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.tour p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.tour small {
+  margin-top: auto;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.t1 { background: #8FD6C9; }
+.t2 { background: #FFC857; }
+.t3 { background: #FF9B8A; }
+.t4 { background: #B7D7F5; }
+
+.relax {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media(max-width: 980px) {
+  .relax {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 580px) {
+  .relax {
+    grid-template-columns: 1fr;
+  }
+}
+
+.relax figure {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.relax figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.relax img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.relax figcaption {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.relax figcaption strong {
+  display: block;
+  font: 800 19px "Baloo 2", sans-serif;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.relax figcaption span {
+  font-size: 14px;
+  color: var(--muted);
+  display: block;
+  line-height: 1.5;
+}
+
+.biz {
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 24px;
+  padding: 44px;
+  display: flex;
+  gap: 28px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.biz h2 {
+  margin: 0 0 8px;
+}
+
+.biz p {
+  margin: 0;
+  max-width: 52ch;
+  opacity: 0.85;
+}
+
+details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+details p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 720px;
+}
+
+@media(max-width: 640px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+input, select {
+  font: inherit;
+  padding: 13px 16px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+input:focus, select:focus {
+  border-color: var(--teal);
+  outline: none;
+}
+
+form .full {
+  grid-column: 1 / -1;
+}
+
+#ok {
+  display: none;
+  font-weight: 600;
+  color: var(--teal);
+  margin-left: 12px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 36px 0;
+  font-size: 15px;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+footer a {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+@media(prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <img src="data:image/webp;base64,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" alt="Logo Đi Rồi Biết" class="logo-img">
+      Đi Rồi <b>Biết</b>
+    </a>
+    <nav>
+      <a href="#ve-chung-toi">Về chúng tôi</a>
+      <a href="#cach-choi">Cách chơi</a>
+      <a href="#san-pham">Sản phẩm</a>
+      <a href="#tour">Tour</a>
+      <a href="#thu-gian">Thư giãn</a>
+      <a href="#an-toan">An toàn</a>
+      <a class="btn" href="#dat-tour">Đặt tour</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Đi rồi<span>biết.</span></h1>
+      <p>Bạn chỉ biết khu vực và kiểu chơi. Địa điểm, lịch trình và bất ngờ, để chuyến đi tự kể.</p>
+      <a class="btn" href="#dat-tour">Đặt chuyến bí mật</a> 
+      <a class="btn alt" href="#cach-choi">Chơi thế nào?</a>
+    </div>
+    <div class="ticket" id="ticket" aria-label="Vé tour mẫu">
+      <h3>Vé chuyến bí mật</h3>
+      <dl style="margin:0">
+        <div class="row"><dt>Khu vực</dt><dd>Gần TP.HCM</dd></div>
+        <div class="row"><dt>Kiểu chơi</dt><dd>Thư giãn, cảm giác mới</dd></div>
+        <div class="row"><dt>Địa điểm</dt><dd><span class="redact mask" style="width:110px"></span><span class="hint">Đi rồi biết!</span></dd></div>
+        <div class="row"><dt>Chặng 1</dt><dd><span class="redact mask" style="width:150px"></span><span class="hint">Đi rồi biết!</span></dd></div>
+        <div class="row" style="border:0"><dt>Mang theo</dt><dd>Giày thoải mái, tinh thần thoải mái</dd></div>
+      </dl>
+      <button class="btn alt" id="peek" type="button">Thử hé lộ</button>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="ve-chung-toi">
+  <div class="wrap">
+    <p class="slogan">"Càng mù càng phê càng đi càng mê"</p>
+    <div class="vm">
+      <div>
+        <h3>Tầm nhìn</h3>
+        <p>Trở thành thương hiệu du lịch bí ẩn (mystery tour) hàng đầu Việt Nam — nơi mỗi hành trình là một câu chuyện chưa ai từng kể, và sự tin tưởng của khách hàng chính là tấm bản đồ duy nhất họ cần.</p>
+      </div>
+      <div>
+        <h3>Sứ mệnh</h3>
+        <p>Thiết kế những hành trình một ngày được giữ kín đến phút cuối, để khách hàng buông bỏ việc lên kế hoạch, tin tưởng phó thác cho chúng tôi, và tận hưởng trọn vẹn cảm giác khám phá thật sự — an toàn, chỉn chu, đầy bất ngờ tích cực.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cach-choi">
+  <div class="wrap">
+    <h2>Cách chơi</h2>
+    <p class="lead">Bốn bước, không cần Google. Bạn chỉ việc mang theo sự tò mò.</p>
+    <ol class="steps">
+      <li><h3>Chọn vibe</h3><p>Thư giãn, thử thách, gắn kết hay gia đình. Chọn số người và ngân sách.</p></li>
+      <li><h3>Nhận thư bí mật</h3><p>Chúng tôi gửi khu vực, giờ tập trung và đồ cần mang. Địa điểm vẫn được giấu.</p></li>
+      <li><h3>Lên đường</h3><p>Xe đón đúng giờ. Từng chặng được hé lộ ngay trước khi bạn tới.</p></li>
+      <li><h3>Về nhà với kỷ niệm</h3><p>Nhận ảnh và bản đồ hành trình sau chuyến đi để kể lại cho cả nhóm.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="san-pham">
+  <div class="wrap">
+    <h2>Bạn nhận được gì</h2>
+    <p class="lead">Ba lớp giá trị: điều bạn thật sự mua, thứ bạn nhìn thấy và dùng, và những tiện ích làm chuyến đi trọn vẹn.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1">Cảm xúc bạn mua</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2">Trải nghiệm thực tế</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3">Tiện ích đi kèm</button>
+    </div>
+    
+    <div class="panel on" id="p1" role="tabpanel" aria-labelledby="t1">
+      <p class="q">Bạn không mua một chuyến đi, bạn mua cảm xúc.</p>
+      <ul class="items">
+        <li><strong>Thư giãn</strong><span>Tạm rời áp lực học tập và công việc.</span></li>
+        <li><strong>Mới lạ</strong><span>Thử những điều khác thường ngày.</span></li>
+        <li><strong>Chinh phục</strong><span>Vượt nỗi sợ, thử trò chơi cảm giác mạnh.</span></li>
+        <li><strong>Kỷ niệm</strong><span>Trải nghiệm đặc biệt cùng người thân, bạn bè.</span></li>
+        <li><strong>Gắn kết</strong><span>Cùng chơi, cùng tương tác, cùng kể lại.</span></li>
+      </ul>
+    </div>
+    
+    <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
+      <p class="q">Bạn sẽ trực tiếp trải nghiệm những gì?</p>
+      <ul class="items">
+        <li><strong>Hành trình bí mật</strong><span>Chuỗi chặng được thiết kế, hé lộ từng bước.</span></li>
+        <li><strong>Không gian theo chủ đề</strong><span>Địa điểm, âm thanh, ánh sáng tạo bầu không khí riêng.</span></li>
+        <li><strong>Hoạt động &amp; biểu diễn</strong><span>Workshop, trò chơi, nghệ thuật dân gian tại chỗ.</span></li>
+        <li><strong>Đội ngũ dẫn tour</strong><span>Thái độ, tác phong và khả năng hỗ trợ khách.</span></li>
+        <li><strong>Tiêu chuẩn an toàn</strong><span>Kiểm tra trước, hướng dẫn rõ, có người giám sát.</span></li>
+      </ul>
+    </div>
+    
+    <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
+      <p class="q">Chúng tôi làm thêm gì để bạn thấy thuận tiện?</p>
+      <ul class="items">
+        <li><strong>Đặt tour trực tuyến</strong><span>Chốt chỗ trước, không phải xếp hàng chờ.</span></li>
+        <li><strong>Bản đồ điện tử</strong><span>Hé lộ vị trí và giờ hoạt động theo từng chặng.</span></li>
+        <li><strong>Gửi đồ</strong><span>Bảo quản tư trang khi tham gia hoạt động.</span></li>
+        <li><strong>Y tế và sơ cứu</strong><span>Hỗ trợ ngay khi có vấn đề sức khỏe.</span></li>
+        <li><strong>Thành viên &amp; ưu đãi</strong><span>Tích điểm, giảm giá cho lần đi tiếp theo.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="tour">
+  <div class="wrap">
+    <h2>Chọn vibe, đừng chọn địa điểm</h2>
+    <p class="lead">Mỗi tour chỉ công bố khu vực và mức vận động. Phần còn lại là bí mật.</p>
+    
+    <div class="heal-wrap">
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Tour Chữa Lành">
+      <p>Bịt mắt cảm xúc, mở lòng với thiên nhiên: mỗi chặng "chữa lành" kết hợp yếu tố bất ngờ của mù tour với nhịp thở chậm, thiền, và kết nối với đất trời.</p>
+    </div>
+
+    <div class="tours">
+      <article class="tour t1">
+        <h3>Tour chữa lành</h3>
+        <p>Đi chậm, thở sâu, làm những việc bằng tay và để đầu óc nghỉ ngơi.</p>
+        <small>Gần TP.HCM, 1 đến 2 ngày, vận động nhẹ</small>
+      </article>
+      <article class="tour t2">
+        <h3>Tour thử thách</h3>
+        <p>Những chặng khiến tim đập nhanh. Bạn quyết định giới hạn của mình.</p>
+        <small>Ngoại thành, 1 ngày, vận động vừa đến mạnh</small>
+      </article>
+      <article class="tour t3">
+        <h3>Tour hội bạn thân</h3>
+        <p>Trò chơi, nhiệm vụ nhóm và những cú bất ngờ để cả hội cùng đoán sai.</p>
+        <small>Gần TP.HCM, 1 ngày, vận động vừa</small>
+      </article>
+      <article class="tour t4">
+        <h3>Tour gia đình</h3>
+        <p>Nhịp thong thả, nhiều điểm dừng, phù hợp từ trẻ nhỏ đến ông bà.</p>
+        <small>Gần TP.HCM, 1 ngày, vận động nhẹ</small>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="thu-gian">
+  <div class="wrap">
+    <h2>Khoảnh khắc thư giãn</h2>
+    <p class="lead">Sau mỗi chặng bí mật, luôn có một khoảng lặng phong phú để cơ thể và tâm trí được chữa lành trọn vẹn.</p>
+    <div class="relax">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80" alt="Hòa mình thiên nhiên">
+        <figcaption>
+          <strong>Hòa mình thiên nhiên</strong>
+          <span>Rừng xanh, tiếng suối reo và mặt hồ phẳng lặng làm nền cho từng chặng nghỉ.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Gội đầu dưỡng sinh">
+        <figcaption>
+          <strong>Gội đầu dưỡng sinh</strong>
+          <span>Massage đầu, cổ vai gáy với thảo dược tự nhiên giúp thả lỏng hoàn toàn.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Ngâm chân thảo dược trong chậu gỗ">
+        <figcaption>
+          <strong>Ngâm chân thảo dược</strong>
+          <span>Bồn gỗ ngâm chân ấm áp hòa quyện hoa khô và thảo mộc địa phương dịu nhẹ.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Thưởng trà và thiền chuông xoay">
+        <figcaption>
+          <strong>Thưởng trà &amp; Thiền định</strong>
+          <span>Thoa dịu tâm trí với chén trà ấm và dải âm thanh ngân vang của chuông xoay.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Chèo SUP ngắm hoàng hôn">
+        <figcaption>
+          <strong>Chèo SUP ngắm hoàng hôn</strong>
+          <span>Vận động nhẹ nhàng trên mặt nước êm đềm khi nắng chiều dần buông.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=600&q=80" alt="Lửa trại BBQ đêm">
+        <figcaption>
+          <strong>Lửa trại &amp; BBQ ấm cúng</strong>
+          <span>Ngồi quanh bếp lửa hồng, thưởng thức tiệc nướng và chia sẻ những câu chuyện.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=600&q=80" alt="Workshop làm đồ thủ công">
+        <figcaption>
+          <strong>Workshop làm đồ thủ công</strong>
+          <span>Tự tay xoay gốm hoặc rót nến thơm, lưu giữ món quà tinh thần độc bản.</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=600&q=80" alt="Tiệc trà chiều giữa vườn xanh">
+        <figcaption>
+          <strong>Tiệc trà chiều trong vườn</strong>
+          <span>Thưởng thức bánh ngọt, trái cây tươi giữa không gian xanh mát và quý phái.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="biz">
+      <div>
+        <h2>Team building cho doanh nghiệp</h2>
+        <p>Cả công ty cùng lên xe không biết đi đâu. Nhiệm vụ nhóm, thử thách và kỷ niệm chung, được thiết kế theo số người và mục tiêu của bạn.</p>
+      </div>
+      <a class="btn" href="#dat-tour">Nhận tư vấn</a>
+    </div>
+  </div>
+</section>
+
+<section id="an-toan">
+  <div class="wrap">
+    <h2>Câu hỏi thường gặp</h2>
+    <p class="lead">Không biết trước địa điểm nhưng bạn vẫn cần biết chắc mình an toàn.</p>
+    <details>
+      <summary>Không biết địa điểm thì có an toàn không?</summary>
+      <p>Mọi chặng được khảo sát trước. Bạn luôn biết trước khu vực, mức vận động, thời tiết cần chuẩn bị và đồ cần mang. Bí mật chỉ nằm ở địa điểm cụ thể.</p>
+    </details>
+    <details>
+      <summary>Nếu tôi có giới hạn về sức khỏe hoặc ăn uống?</summary>
+      <p>Ghi rõ trong phiếu đặt tour. Chúng tôi điều chỉnh hoạt động và bữa ăn trước khi khởi hành.</p>
+    </details>
+    <details>
+      <summary>Tôi có đoán được điểm đến không?</summary>
+      <p>Cứ thử. Thư bí mật chỉ đưa gợi ý vừa đủ để chuẩn bị, không đủ để tra Google.</p>
+    </details>
+    <details>
+      <summary>Đặt cho nhóm đông hoặc công ty được không?</summary>
+      <p>Được. Chọn “Doanh nghiệp” trong form bên dưới, chúng tôi sẽ liên hệ để thiết kế riêng.</p>
+    </details>
+  </div>
+</section>
+
+<section id="dat-tour">
+  <div class="wrap">
+    <h2>Đặt chuyến bí mật</h2>
+    <p class="lead">Điền thông tin, chúng tôi gọi lại để chốt ngày đi và gửi thư bí mật.</p>
+    <form id="f">
+      <label>Họ và tên<input required name="n" autocomplete="name"></label>
+      <label>Số điện thoại<input required name="p" type="tel" autocomplete="tel"></label>
+      <label>Số người<input required name="k" type="number" min="1" value="2"></label>
+      <label>Bạn thuộc nhóm nào?
+        <select name="v">
+          <option>Chữa lành</option>
+          <option>Thử thách</option>
+          <option>Hội bạn thân</option>
+          <option>Gia đình</option>
+          <option>Doanh nghiệp</option>
+        </select>
+      </label>
+      <div class="full">
+        <button class="btn" type="submit">Gửi đăng ký</button> 
+        <span id="ok" role="status">Đã nhận! Chúng tôi sẽ liên hệ sớm.</span>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Đi Rồi Biết – Tour bí mật quanh TP.HCM</span>
+    <span>Liên hệ: <a href="mailto:mutourmarketing@gmail.com">mutourmarketing@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Reveal ticket details
+  var t = document.getElementById('ticket'), b = document.getElementById('peek');
+  b.addEventListener('click', function(){
+    var on = t.classList.toggle('reveal');
+    b.textContent = on ? 'Giấu lại' : 'Thử hé lộ';
+  });
+
+  // Product tab switching
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(x){
+    x.addEventListener('click', function(){
+      tabs.forEach(function(y){
+        y.setAttribute('aria-selected', y === x ? 'true' : 'false');
+        document.getElementById(y.getAttribute('aria-controls')).classList.toggle('on', y === x);
+      });
+    });
+  });
+
+  // Form submission handler
+  document.getElementById('f').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('ok').style.display = 'inline';
+  });
+})();
+</script>
+</body>
+</html>
