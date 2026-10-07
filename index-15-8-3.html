@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Đi Rồi Biết – Ultra Smooth Luxury Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+/* 
+  CHAMPAGNE & LATTE LUXURY VARIABLES 
+*/
+:root {
+  --text-dark: #1A1412; 
+  --text-body: #362B26; 
+  --accent-gold: #A67B5B; 
+  --accent-dark: #291E16; 
+  
+  --glass-bg: rgba(255, 255, 255, 0.75); 
+  --glass-border: rgba(255, 255, 255, 1);
+  --glass-shadow: 0 15px 35px rgba(41, 30, 22, 0.08);
+  --blur: blur(24px);
+  
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  color: var(--text-body);
+  font: 400 16px/1.8 "Be Vietnam Pro", "Segoe UI", Roboto, Arial, sans-serif;
+  overflow-x: hidden;
+  background: transparent; 
+}
+
+/* =========================================
+   1. HỆ THỐNG BACKGROUND ĐỘNG & BỌT KHÍ
+========================================= */
+#dynamic-bg {
+  position: fixed; inset: 0; z-index: -10; pointer-events: none; overflow: hidden;
+  background: linear-gradient(-45deg, #F3E3D3, #EAD6C9, #D5C8BB, #E6DACE);
+  background-size: 200% 200%;
+  animation: bgShift 12s ease-in-out infinite;
+}
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.blob { position: absolute; border-radius: 50%; will-change: transform; }
+.blob-inner {
+  width: 100%; height: 100%; border-radius: 50%;
+  animation: floatAura 15s infinite alternate ease-in-out; will-change: transform;
+}
+#b1 { width: 70vw; height: 70vw; top: -20%; left: -10%; }
+#b1 .blob-inner { background: radial-gradient(circle, rgba(232, 203, 175, 0.8) 0%, rgba(232, 203, 175, 0) 70%); }
+#b2 { width: 60vw; height: 60vw; bottom: -10%; right: -10%; }
+#b2 .blob-inner { background: radial-gradient(circle, rgba(217, 195, 176, 0.8) 0%, rgba(217, 195, 176, 0) 70%); animation-delay: -5s; animation-duration: 18s;}
+#b3 { width: 50vw; height: 50vw; top: 30%; left: 30%; }
+#b3 .blob-inner { background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%); animation-delay: -10s; animation-duration: 20s;}
+#b4 { width: 55vw; height: 55vw; top: 0%; right: 20%; }
+#b4 .blob-inner { background: radial-gradient(circle, rgba(230, 218, 206, 0.6) 0%, rgba(230, 218, 206, 0) 70%); animation-delay: -3s; animation-duration: 16s;}
+#b5 { width: 65vw; height: 65vw; bottom: 10%; left: -5%; }
+#b5 .blob-inner { background: radial-gradient(circle, rgba(245, 233, 222, 0.7) 0%, rgba(245, 233, 222, 0) 70%); animation-delay: -7s; animation-duration: 22s;}
+
+@keyframes floatAura {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(30px, -40px, 0) scale(1.05); }
+  100% { transform: translate3d(-50px, 50px, 0) scale(1.15); }
+}
+
+.bubble-container { position: absolute; bottom: -50px; animation: rise linear infinite; will-change: transform, opacity; }
+.bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5), 0 0 4px rgba(255, 255, 255, 0.3);
+  animation: wobble ease-in-out infinite alternate; will-change: transform;
+}
+@keyframes rise {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translate3d(0, -110vh, 0); opacity: 0; }
+}
+@keyframes wobble {
+  0% { transform: translate3d(-15px, 0, 0); }
+  100% { transform: translate3d(15px, 0, 0); }
+}
+
+/* =========================================
+   2. MOUSE GLOW
+========================================= */
+#cursorGlow {
+  position: fixed; top: 0; left: 0; width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(232, 203, 175, 0.45) 40%, rgba(255, 255, 255, 0) 68%);
+  border-radius: 50%; pointer-events: none; z-index: -1;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  will-change: transform;
+}
+#cursorGlow.hovered {
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(166, 123, 91, 0.7) 0%, rgba(166, 123, 91, 0) 60%);
+}
+
+/* =========================================
+   3. GIAO DIỆN CHUNG
+========================================= */
+h1, h2, h3, .slogan, .logo { font-family: "Playfair Display", "Times New Roman", Georgia, serif; margin: 0; font-weight: 700; color: var(--text-dark); position: relative; z-index: 2; }
+h2 { font-size: clamp(34px, 5vw, 48px); margin-bottom: 16px; line-height: 1.35; text-transform: uppercase; letter-spacing: 0.5px;}
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+section { padding: 100px 0; position: relative; }
+.lead { color: var(--text-body); max-width: 75ch; margin: 0 0 48px; font-size: 1.15rem; position: relative; z-index: 2; font-weight: 500;}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-dark); color: #fff; font-weight: 500; letter-spacing: 1px;
+  padding: 16px 36px; border-radius: 8px; border: 1px solid var(--accent-dark);
+  cursor: pointer; font-size: 15px; font-family: "Be Vietnam Pro", "Segoe UI", Roboto, Arial, sans-serif;
+  transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(41, 30, 22, 0.2); position: relative; z-index: 5;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(41, 30, 22, 0.4); background: #1a130e; }
+.btn.alt { background: rgba(255, 255, 255, 0.6); color: var(--text-dark); border: 1px solid var(--text-dark); box-shadow: none; backdrop-filter: blur(5px); }
+.btn.alt:hover { background: var(--text-dark); color: #fff; }
+
+/* Header */
+header {
+  position: fixed; width: 100%; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur); border-bottom: 1px solid var(--glass-border); transition: all 0.3s ease;
+}
+header .wrap { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+.logo { font-size: 26px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 12px; }
+.logo b { color: var(--accent-gold); font-weight: 700; font-style: italic; }
+nav { display: flex; gap: 30px; align-items: center; font-size: 15px; font-weight: 500; }
+nav a { transition: color 0.3s; color: var(--text-body); }
+nav a:hover { color: var(--accent-gold); }
+@media(max-width: 900px) { nav a:not(.btn) { display: none; } }
+
+/* LOGO – viền trắng + hào quang để nổi bật trên nền champagne */
+.brand-logo {
+  display: block; border-radius: 50%; object-fit: cover; object-position: 50% 50%;
+  aspect-ratio: 1 / 1; background: #FBF6EE;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px rgba(166, 123, 91, 0.55), 0 10px 28px rgba(41, 30, 22, 0.28), 0 0 30px rgba(255, 255, 255, 0.9);
+}
+.logo-img { width: 52px; height: 52px; transition: transform 0.4s ease; }
+.logo:hover .logo-img { transform: rotate(-8deg) scale(1.08); }
+.hero-logo-wrap { position: relative; width: 210px; margin: 0 auto 26px; }
+.hero-logo-wrap::before {
+  content: ''; position: absolute; inset: -34px; border-radius: 50%; z-index: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 45%, rgba(255,255,255,0) 72%);
+}
+.hero-logo { position: relative; z-index: 1; width: 210px; height: 210px; border-width: 5px; animation: logoFloat 6s ease-in-out infinite; }
+@keyframes logoFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.footer-logo { width: 84px; height: 84px; margin: 0 auto 4px; }
+@media(max-width: 520px) { .logo-img { width: 44px; height: 44px; } .hero-logo-wrap, .hero-logo { width: 170px; height: 170px; } }
+
+/* Hero */
+.hero { padding: 160px 0 100px; min-height: 100vh; display: flex; align-items: center; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+@media(max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; text-align: center; } .hero .btn-group { justify-content: center; display: flex; gap: 15px; } }
+.hero-text { background: rgba(255,255,255,0.4); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); }
+.hero h1 { font-size: clamp(44px, 6vw, 72px); line-height: 1.25; margin-bottom: 24px; letter-spacing: -1px; }
+.hero h1 span { display: block; color: var(--accent-gold); font-style: italic; font-weight: 600;}
+.hero p { font-size: 18px; margin-bottom: 40px; color: var(--text-body); font-weight: 500; }
+
+/* TICKET PREMIUM */
+.ticket-wrapper { perspective: 1200px; z-index: 5; position: relative;}
+.ticket {
+  background: var(--glass-bg); backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border); border-radius: 16px; padding: 40px; box-shadow: var(--glass-shadow); 
+  transform-style: preserve-3d; transition: transform 0.1s ease, box-shadow 0.4s ease, border-color 0.4s ease; position: relative;
+}
+.ticket::before { content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(166, 123, 91, 0.4); border-radius: 10px; pointer-events: none; transition: border-color 0.4s; }
+.ticket-glare {
+  position: absolute; inset: 0; border-radius: 16px; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.9) 0%, transparent 60%);
+  opacity: 0; pointer-events: none; z-index: 10; mix-blend-mode: overlay; transition: opacity 0.4s ease;
+}
+.ticket-wrapper:hover .ticket { box-shadow: 0 30px 60px rgba(166, 123, 91, 0.25), 0 0 25px rgba(255, 255, 255, 0.8); border-color: rgba(255, 255, 255, 1); }
+.ticket-wrapper:hover .ticket::before { border-color: rgba(166, 123, 91, 0.8); }
+.ticket-wrapper:hover .ticket-glare { opacity: 1; }
+.ticket h3 { font-size: 26px; color: var(--text-dark); text-align: center; margin-bottom: 30px; letter-spacing: 2px; transform: translateZ(40px); text-transform: uppercase; transition: text-shadow 0.4s; }
+.row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.08); transform: translateZ(25px); }
+.row dt { color: var(--text-body); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;}
+.row dd { margin: 0; font-weight: 600; text-align: right; color: var(--text-dark);}
+.redact { display: inline-block; height: 1.2em; vertical-align: middle; background: rgba(166, 123, 91, 0.2); border-radius: 4px; transition: all 0.5s ease; position: relative; overflow: hidden; }
+.redact::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent); animation: scan 2s infinite linear; }
+@keyframes scan { 100% { left: 200%; } }
+.reveal .redact { background: transparent; height: auto; }
+.reveal .redact::after { display: none; }
+.hint { display: none; color: var(--accent-gold); font-style: italic; font-family: "Playfair Display", "Times New Roman", Georgia, serif; font-size: 18px; font-weight: 600;}
+.reveal .hint { display: inline; animation: fadeIn 0.5s ease; }
+.reveal .mask { display: none; }
+.ticket button { width: 100%; margin-top: 35px; transform: translateZ(50px); }
+
+/* Block Nội Dung chung */
+.slogan { font-size: clamp(32px, 5vw, 50px); color: var(--text-dark); text-align: center; margin: 0 0 60px; font-style: italic; font-weight: 600; }
+.vm { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media(max-width: 760px) { .vm { grid-template-columns: 1fr; } }
+.vm div { background: var(--glass-bg); backdrop-filter: var(--blur); border: 1px solid var(--glass-border); padding: 40px; border-radius: 16px; box-shadow: var(--glass-shadow); transition: transform 0.3s ease; }
+.vm div:hover { transform: translateY(-8px); }
+.vm h3 { font-size: 24px; color: var(--accent-gold); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;}
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; padding: 0; list-style: none; }
+@media(max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.steps li { counter-increment: s; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 35px 25px; box-shadow: var(--glass-shadow); transition: all 0.3s ease; }
+.steps li:hover { transform: translateY(-8px); border-color: var(--accent-gold); }
+.steps li::before { content: "0" counter(s); display: block; font: 700 48px "Playfair Display", serif; color: var(--accent-gold); margin-bottom: 15px; opacity: 0.5; }
+.steps h3 { font-size: 20px; margin-bottom: 12px; font-weight: 700; color: var(--text-dark); }
+
+/* =========================================
+   TẦNG SÂU TRẢI NGHIỆM (TABS & PACKAGES)
+========================================= */
+.tabs { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+.tab { padding: 12px 28px; border-radius: 8px; background: var(--glass-bg); color: var(--text-dark); border: 1px solid var(--glass-border); cursor: pointer; transition: all 0.3s; font-size: 15px; font-weight: 600; position: relative; z-index: 5;}
+.tab:hover { background: #fff; }
+.tab[aria-selected="true"] { background: var(--text-dark); color: #fff; border-color: var(--text-dark); }
+.panel { display: none; animation: slideUp 0.5s ease forwards; }
+.panel.on { display: block; }
+@keyframes slideUp { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+.panel .q { font-size: 26px; color: var(--text-dark); margin: 0 0 30px; font-family: "Playfair Display", "Times New Roman", Georgia, serif; font-style: italic; font-weight: 600;}
+.items { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 0; list-style: none; }
+.items li { background: var(--glass-bg); border: 1px solid var(--glass-border); border-left: 4px solid var(--accent-gold); padding: 25px; border-radius: 12px; box-shadow: var(--glass-shadow); }
+.items strong { display: block; font-family: "Playfair Display", "Times New Roman", Georgia, serif; font-size: 20px; color: var(--text-dark); margin-bottom: 8px; }
+
+/* PRICING CARDS (NỘI DUNG MỚI) */
+.pricing-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;
+}
+@media(max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+.price-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.6));
+  border: 1px solid var(--glass-border); border-radius: 20px; padding: 50px 40px;
+  box-shadow: var(--glass-shadow); text-align: center; position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.price-card::before {
+  content: ''; position: absolute; inset: 0; border: 2px solid transparent; border-radius: 20px;
+  background: linear-gradient(135deg, var(--accent-gold), transparent) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out; mask-composite: exclude; opacity: 0; transition: opacity 0.4s;
+}
+.price-card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px rgba(166, 123, 91, 0.2); }
+.price-card:hover::before { opacity: 1; }
+.price-card h3 { font-size: 28px; color: var(--text-dark); margin-bottom: 15px; font-weight: 700;}
+.price-card .price { font-size: 42px; font-family: "Playfair Display", "Times New Roman", Georgia, serif; color: var(--accent-gold); font-weight: 700; margin-bottom: 20px; line-height: 1; }
+.price-card .price span { font-size: 16px; color: var(--text-body); font-family: "Be Vietnam Pro", "Segoe UI", Roboto, Arial, sans-serif; font-weight: 500; }
+.price-card p { font-size: 15px; color: var(--text-body); line-height: 1.7; text-align: left; margin-bottom: 30px; font-weight: 500;}
+
+.price-card h3 { text-transform: uppercase; letter-spacing: 1.5px; font-size: clamp(26px, 3vw, 36px); }
+/* Gói Hành Trình: thẻ to, xếp hàng ngang */
+.pricing-grid { gap: 36px; margin-top: 50px; align-items: stretch; }
+@media(max-width: 700px) { .pricing-grid { grid-template-columns: 1fr; } }
+.price-card { padding: 70px 48px; display: flex; flex-direction: column; justify-content: space-between; min-height: 560px; border-radius: 24px; }
+.price-card .price { font-size: clamp(46px, 5.4vw, 68px); margin-bottom: 28px; }
+.price-card .price span { font-size: 20px; }
+.price-card p { font-size: 17px; line-height: 1.85; margin-bottom: 40px; }
+.price-card .btn { padding: 20px 36px; font-size: 17px; }
+#t4 { font-size: 18px; padding: 16px 38px; letter-spacing: 0.5px; }
+@media(max-width: 520px) { .price-card { padding: 48px 28px; min-height: 0; } }
+.price-note {
+  margin-top: 30px; padding: 34px 44px; text-align: center; position: relative;
+  background: var(--glass-bg); backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--glass-shadow);
+}
+.price-note::before { content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(166, 123, 91, 0.5); border-radius: 12px; pointer-events: none; }
+.price-note p { margin: 12px 0; font: italic 600 clamp(19px, 2.4vw, 24px)/1.6 "Playfair Display", "Times New Roman", Georgia, serif; color: var(--text-dark); }
+.price-note-mark { color: var(--accent-gold); font-size: 14px; display: block; }
+@media(max-width: 600px) { .price-note { padding: 28px 24px; } }
+
+/* =========================================
+   LUXURY CARDS (DÀNH CHO TOURS & RELAX MỚI)
+========================================= */
+.lux-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px;}
+.lux-card {
+  background: var(--glass-bg); backdrop-filter: var(--blur); border: 1px solid var(--glass-border);
+  border-radius: 20px; overflow: hidden; box-shadow: var(--glass-shadow);
+  display: flex; flex-direction: column; transition: all 0.4s ease;
+}
+.lux-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(166, 123, 91, 0.15); border-color: rgba(255,255,255,1); }
+.lux-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid rgba(0,0,0,0.05); }
+/* Thẻ ngang trải hết hàng (Tổ Ấm Xanh) */
+.lux-card-wide { grid-column: 1 / -1; flex-direction: row; align-items: stretch; }
+.lux-card-wide .lux-img { width: 42%; height: auto; min-height: 280px; border-bottom: none; border-right: 1px solid rgba(0,0,0,0.05); }
+.lux-card-wide .lux-content { justify-content: center; padding: 40px 48px; }
+@media(max-width: 760px) {
+  .lux-card-wide { flex-direction: column; }
+  .lux-card-wide .lux-img { width: 100%; height: 220px; min-height: 0; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .lux-card-wide .lux-content { padding: 30px; }
+}
+.lux-content { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+.lux-content h3 { font-size: 24px; color: var(--text-dark); margin-bottom: 6px; font-style: normal; font-weight: 700;}
+.lux-content small { font-size: 13px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; display: block; margin-bottom: 20px; }
+.lux-content ul { padding: 0; margin: 0; list-style: none; flex: 1; }
+.lux-content li { 
+  font-size: 15px; color: var(--text-body); font-weight: 500; line-height: 1.6; 
+  margin-bottom: 12px; position: relative; padding-left: 24px;
+}
+.lux-content li::before {
+  content: '✦'; color: var(--accent-gold); position: absolute; left: 0; top: 2px; font-size: 12px;
+}
+
+/* Corporate */
+.biz { background: var(--glass-bg); backdrop-filter: var(--blur); border: 1px solid var(--glass-border); border-radius: 20px; padding: 60px; display: flex; gap: 40px; justify-content: space-between; align-items: center; flex-wrap: wrap; box-shadow: var(--glass-shadow); position: relative; overflow: hidden; }
+.biz::after { content: ''; position: absolute; right: -50px; top: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(166, 123, 91,0.2) 0%, transparent 70%); border-radius: 50%; z-index: -1; }
+.biz h2 { color: var(--text-dark); margin: 0 0 10px; }
+.biz p { font-weight: 500; margin: 0; max-width: 50ch;}
+
+/* Accordion */
+details { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: all 0.3s; position: relative; z-index: 5;}
+details[open] { background: #fff; box-shadow: var(--glass-shadow); }
+summary { cursor: pointer; font-weight: 600; font-size: 16px; line-height: 1.5; color: var(--text-dark); outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; color: var(--accent-gold); font-size: 26px; font-weight: 300; line-height: 1; flex-shrink: 0; transition: transform 0.3s; }
+details[open] summary::after { transform: rotate(45deg); }
+details p { margin: 16px 0 0; color: var(--text-body); font-size: 15px; font-weight: 400; line-height: 1.7; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 16px;}
+
+/* Form */
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; position: relative; z-index: 5;}
+
+/* Nhấn để xem chi tiết (Bộ sưu tập Trị liệu & Khoảnh khắc Bình yên) */
+.lux-grid { align-items: start; }
+.lux-card { cursor: pointer; position: relative; }
+.lux-card:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 4px; }
+.lux-card .lux-content small { margin-bottom: 0; transition: margin 0.5s ease; }
+.lux-card .lux-content ul {
+  max-height: 0; opacity: 0; overflow: hidden; transform: translateY(-8px);
+  transition: max-height 0.6s cubic-bezier(0.2,0.8,0.2,1), opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+}
+.lux-card.open .lux-content small { margin-bottom: 20px; }
+.lux-card.open .lux-content ul { max-height: 500px; opacity: 1; transform: translateY(0); }
+.lux-card .lux-content li { transition: opacity 0.4s ease, transform 0.4s ease; }
+.lux-card:not(.open) .lux-content li { opacity: 0; transform: translateX(-10px); }
+.lux-card.open .lux-content li:nth-child(1) { transition-delay: 0.15s; }
+.lux-card.open .lux-content li:nth-child(2) { transition-delay: 0.3s; }
+.lux-card.open .lux-content li:nth-child(3) { transition-delay: 0.45s; }
+.lux-more {
+  display: flex; align-items: center; gap: 8px; margin-top: 18px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.5px; color: var(--accent-gold);
+}
+.lux-more .plus {
+  width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--accent-gold);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 16px; line-height: 1;
+  transition: transform 0.4s ease, background 0.3s ease, color 0.3s ease;
+}
+.lux-card:hover .lux-more .plus { background: var(--accent-gold); color: #fff; }
+.lux-card.open .lux-more .plus { transform: rotate(45deg); }
+.lux-card .lux-img { transition: transform 0.8s ease; }
+.lux-card.open .lux-img { transform: scale(1.04); }
+.lux-card { overflow: hidden; }
+
+/* BẢNG CHỌN GÓI TOUR (hiện khi bấm Đặt lịch / Chọn gói) */
+.pkg-modal { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(26, 20, 18, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.pkg-modal.on { display: flex; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.pkg-box { position: relative; width: 100%; max-width: 860px; max-height: 92vh; overflow-y: auto; background: linear-gradient(145deg, #fffdf9, #f3e8dc); border: 1px solid #fff; border-radius: 24px; padding: 48px 40px 40px; box-shadow: 0 30px 80px rgba(41, 30, 22, 0.35); text-align: center; animation: slideUp 0.4s ease; }
+.pkg-box::before { content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(166, 123, 91, 0.5); border-radius: 16px; pointer-events: none; }
+.pkg-box h3 { font-size: clamp(26px, 4vw, 34px); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.pkg-box > p { margin: 0 0 30px; font-weight: 500; }
+.pkg-close { position: absolute; top: 18px; right: 22px; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); background: #fff; color: var(--text-dark); font-size: 22px; line-height: 1; cursor: pointer; z-index: 3; transition: all 0.3s; }
+.pkg-close:hover { background: var(--text-dark); color: #fff; }
+.pkg-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative; z-index: 2; }
+@media(max-width: 640px) { .pkg-options { grid-template-columns: 1fr; } .pkg-box { padding: 44px 22px 28px; } }
+.pkg-opt { font: inherit; text-align: center; cursor: pointer; background: rgba(255,255,255,0.85); border: 2px solid rgba(166, 123, 91, 0.25); border-radius: 18px; padding: 32px 24px; transition: all 0.3s ease; color: var(--text-body); display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.pkg-opt:hover, .pkg-opt:focus-visible, .pkg-opt.pre { border-color: var(--accent-gold); transform: translateY(-6px); box-shadow: 0 18px 36px rgba(166, 123, 91, 0.22); background: #fff; outline: none; }
+.pkg-opt .n { font: 700 24px "Playfair Display", Georgia, serif; color: var(--text-dark); text-transform: uppercase; letter-spacing: 1px; }
+.pkg-opt .p { font: 700 34px "Playfair Display", Georgia, serif; color: var(--accent-gold); }
+.pkg-opt .p small { font: 500 15px "Be Vietnam Pro", Arial, sans-serif; color: var(--text-body); }
+.pkg-opt .d { font-size: 14px; line-height: 1.6; font-weight: 500; }
+.pkg-opt .go { margin-top: 6px; font-size: 14px; font-weight: 600; color: #fff; background: var(--accent-dark); padding: 10px 24px; border-radius: 8px; }
+
+/* FORM "GỬI GẮM HÀNH TRÌNH" – hiện dạng cửa sổ nổi, không nằm ngoài trang */
+.pkg-modal { z-index: 1002; }
+#dat-tour { display: none; position: fixed; inset: 0; z-index: 1001; padding: 24px; overflow-y: auto; background: rgba(26, 20, 18, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+#dat-tour.on { display: flex; animation: fadeIn 0.3s ease; }
+#dat-tour .wrap { margin: auto; width: 100%; max-width: 860px; padding: 48px 44px 40px; background: linear-gradient(145deg, #fffdf9, #f3e8dc); border: 1px solid #fff; border-radius: 24px; box-shadow: 0 30px 80px rgba(41, 30, 22, 0.35); animation: slideUp 0.4s ease; }
+#dat-tour .wrap::before { content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(166, 123, 91, 0.5); border-radius: 16px; pointer-events: none; z-index: 0; }
+#dat-tour h2 { font-size: clamp(26px, 4vw, 36px); }
+#dat-tour .lead { margin-bottom: 20px; font-size: 1rem; }
+#dat-tour form { max-width: none; }
+.chosen { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 0 0 24px; padding: 14px 20px; border-radius: 12px; background: rgba(166, 123, 91, 0.12); border: 1px solid rgba(166, 123, 91, 0.35); position: relative; z-index: 2; font-weight: 500; }
+.chosen b { color: var(--accent-gold); font-weight: 700; }
+.chosen button { font: 600 14px "Be Vietnam Pro", Arial, sans-serif; background: none; border: 0; color: var(--text-dark); text-decoration: underline; cursor: pointer; }
+@media(max-width: 640px) { #dat-tour { padding: 12px; } #dat-tour .wrap { padding: 44px 20px 28px; } }
+
+/* Mạng xã hội ở chân trang */
+.social { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(0,0,0,0.06); }
+.social-title { font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-gold); }
+.social-row { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+.social-link {
+  width: 48px; height: 48px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--glass-bg); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
+  color: var(--accent-gold); transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+.social-link svg { width: 22px; height: 22px; fill: currentColor; }
+.social-link:hover, .social-link:focus-visible { background: var(--accent-gold); color: #fff; transform: translateY(-5px); box-shadow: 0 14px 28px rgba(166,123,91,0.28); outline: none; }
+@media(max-width: 640px) { form { grid-template-columns: 1fr; } .full-col { grid-column: auto; } }
+label { display: grid; gap: 8px; font-weight: 600; font-size: 13px; color: var(--text-body); text-transform: uppercase; letter-spacing: 1px;}
+textarea { font-family: inherit; padding: 16px 20px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.8); color: var(--text-dark); font-size: 15px; transition: all 0.3s; font-weight: 500; resize: vertical; }
+textarea:focus { border-color: var(--accent-gold); outline: none; background: #fff; box-shadow: 0 0 0 3px rgba(166, 123, 91, 0.1); }
+input, select { font-family: inherit; padding: 16px 20px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; background: rgba(255,255,255,0.8); color: var(--text-dark); font-size: 15px; transition: all 0.3s; font-weight: 500; }
+input:focus, select:focus { border-color: var(--accent-gold); outline: none; background: #fff; box-shadow: 0 0 0 3px rgba(166, 123, 91, 0.1); }
+form .full { grid-column: 1 / -1; margin-top: 10px; display: flex; align-items: center; }
+.full-col { grid-column: 1 / -1; }
+#err { display: none; color: #9b2c2c; margin-left: 20px; font-weight: 600; font-size: 15px; }
+#err a { color: #9b2c2c; text-decoration: underline; }
+.btn[disabled] { opacity: 0.6; cursor: wait; }
+#ok { display: none; color: var(--text-dark); margin-left: 20px; font-style: italic; font-weight: 600; font-size: 15px;}
+
+footer { border-top: 1px solid rgba(0,0,0,0.08); padding: 40px 0; font-size: 14px; font-weight: 500; color: var(--text-body); background: transparent; position: relative; z-index: 10; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+footer a { color: var(--text-dark); font-weight: 600; }
+
+.reveal-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.reveal-up.active { opacity: 1; transform: translateY(0); }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #EAD6C9; }
+::-webkit-scrollbar-thumb { background: #A67B5B; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<!-- KHỐI BACKGROUND ĐỘNG -->
+<div id="dynamic-bg">
+  <div id="particles"></div>
+  <div class="blob" id="b1"><div class="blob-inner"></div></div>
+  <div class="blob" id="b2"><div class="blob-inner"></div></div>
+  <div class="blob" id="b3"><div class="blob-inner"></div></div>
+  <div class="blob" id="b4"><div class="blob-inner"></div></div>
+  <div class="blob" id="b5"><div class="blob-inner"></div></div>
+</div>
+
+<!-- KHỐI CHUỘT GLOW -->
+<div id="cursorGlow"></div>
+
+<header id="header">
+  <div class="wrap">
+    <a class="logo" href="#top"><img class="brand-logo logo-img" src="logo.png" alt="Logo Đi Rồi Biết" width="52" height="52">Đi Rồi <b>Biết</b></a>
+    <nav>
+      <a href="#ve-chung-toi" class="hover-target">Triết lý</a>
+      <a href="#cach-choi" class="hover-target">Cách chơi</a>
+      <a href="#san-pham" class="hover-target">Trải nghiệm</a>
+      <a href="#tour" class="hover-target">Trị liệu</a>
+      <a class="btn hover-target" href="#dat-tour">Đặt lịch ngay</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="reveal-up active">
+      <div class="hero-text">
+        <h1>Hành trình<span>vô danh.</span></h1>
+        <p>Bỏ lại áp lực lên kế hoạch. Chọn một cảm xúc bạn muốn, và để chúng tôi dẫn bạn tới không gian chữa lành tĩnh lặng, nơi mọi điểm đến đều được tinh tuyển tỉ mỉ.</p>
+        <div class="btn-group">
+          <a class="btn hover-target" href="#dat-tour">Bắt đầu chuyến đi</a> 
+          <a class="btn alt hover-target" href="#cach-choi">Khám phá thêm</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ticket-wrapper reveal-up active hover-target" style="transition-delay: 0.1s">
+      <div class="ticket" id="ticket">
+        <div class="ticket-glare"></div>
+        <h3>Premium Pass</h3>
+        <dl style="margin:0">
+          <div class="row"><dt>Khu vực</dt><dd>Ngoại ô tĩnh lặng TP.HCM</dd></div>
+          <div class="row"><dt>Trải nghiệm</dt><dd>Thư giãn & Chữa lành</dd></div>
+          <div class="row"><dt>Tọa độ</dt><dd><span class="redact mask" style="width:120px"></span><span class="hint">Đi rồi biết!</span></dd></div>
+          <div class="row"><dt>Chặng 1</dt><dd><span class="redact mask" style="width:160px"></span><span class="hint">Đang giải mã...</span></dd></div>
+          <div class="row" style="border:0"><dt>Dresscode</dt><dd>Linen, Tự do</dd></div>
+        </dl>
+        <button class="btn alt hover-target" id="peek" type="button" style="width:100%; margin-top:30px">Giải mã vé</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="ve-chung-toi">
+  <div class="wrap reveal-up">
+    <p class="slogan">"Càng mù càng phê, càng đi càng mê"</p>
+    <div class="vm">
+      <div class="hover-target">
+        <h3>Tầm nhìn</h3>
+        <p>Trở thành thương hiệu du lịch bí ẩn (mystery tour) hàng đầu Việt Nam — nơi mỗi hành trình là một câu chuyện chưa ai từng kể, và sự tin tưởng của khách hàng chính là tấm bản đồ duy nhất họ cần.</p>
+      </div>
+      <div class="hover-target">
+        <h3>Sứ mệnh</h3>
+        <p>Thiết kế những hành trình một ngày được giữ kín đến phút cuối, để khách hàng buông bỏ việc lên kế hoạch, tin tưởng phó thác cho chúng tôi, và tận hưởng trọn vẹn cảm giác khám phá thật sự — an toàn, chỉn chu, đầy bất ngờ tích cực.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cach-choi">
+  <div class="wrap reveal-up">
+    <h2>Nghệ thuật Khám phá</h2>
+    <p class="lead">Bốn bước chạm đến sự thư thái. Hãy để tâm trí nghỉ ngơi.</p>
+    <ol class="steps">
+      <li class="hover-target"><h3>Chọn "Vibe"</h3><p>Mộc mạc chữa lành hay gắn kết ấm cúng? Chọn phong cách phù hợp với tâm trạng.</p></li>
+      <li class="hover-target"><h3>Nhận mật thư</h3><p>Gợi ý tinh tế về trang phục sẽ được gửi đến, giữ kín tọa độ tuyệt đối.</p></li>
+      <li class="hover-target"><h3>Khởi hành</h3><p>Xe riêng đón tận nơi. Lộ trình được hé mở qua từng trạm dừng chân.</p></li>
+      <li class="hover-target"><h3>Lưu giữ</h3><p>Mang về những khung hình điện ảnh và sự bình yên vô giá sau một ngày.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="san-pham">
+  <div class="wrap reveal-up">
+    <h2>Tầng sâu Trải nghiệm</h2>
+    <p class="lead">Thiết kế chuyến đi dựa trên sự cộng hưởng của đa giác quan và dịch vụ.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab hover-target" role="tab" aria-selected="true" aria-controls="p1" id="t1">Giá trị Cảm xúc</button>
+      <button class="tab hover-target" role="tab" aria-selected="false" aria-controls="p2" id="t2">Thực tế Trải nghiệm</button>
+      <button class="tab hover-target" role="tab" aria-selected="false" aria-controls="p3" id="t3">Đặc quyền Boutique</button>
+      <!-- Bổ sung Tab Gói Hành Trình -->
+      <button class="tab hover-target" role="tab" aria-selected="false" aria-controls="p4" id="t4" style="background: var(--accent-gold); color: #fff;">Gói Hành Trình</button>
+    </div>
+    
+    <div class="panel on" id="p1" role="tabpanel" aria-labelledby="t1">
+      <p class="q">Chữa lành từ bên trong.</p>
+      <ul class="items">
+        <li class="hover-target"><strong>Detox Tinh thần</strong><span>Cắt đứt hoàn toàn với áp lực đô thị, thông báo công việc.</span></li>
+        <li class="hover-target"><strong>Nuôi dưỡng Giác quan</strong><span>Chạm vào thiên nhiên, ngửi hương mộc mạc, nghe tiếng gió.</span></li>
+        <li class="hover-target"><strong>Gắn kết Sâu sắc</strong><span>Dành trọn thời gian chất lượng bên những người thương yêu.</span></li>
+      </ul>
+    </div>
+    <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
+      <p class="q">Chỉn chu trong từng nhịp thở.</p>
+      <ul class="items">
+        <li class="hover-target"><strong>Lộ trình Kịch bản</strong><span>Được thiết kế nhịp nhàng: Có lúc sôi nổi, có khoảng lặng thiền.</span></li>
+        <li class="hover-target"><strong>Không gian Nghệ thuật</strong><span>Concept thẩm mỹ cao, phù hợp để chụp ảnh và thư giãn.</span></li>
+        <li class="hover-target"><strong>Host Tinh tế</strong><span>Người đồng hành thấu hiểu, xuất hiện đúng lúc, lùi lại đúng chỗ.</span></li>
+      </ul>
+    </div>
+    <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
+      <p class="q">Chuẩn mực Dịch vụ Cao cấp.</p>
+      <ul class="items">
+        <li class="hover-target"><strong>Private Booking</strong><span>Không gian riêng tư, hạn chế đông đúc, tránh phải xếp hàng.</span></li>
+        <li class="hover-target"><strong>Ẩm thực Chọn lọc</strong><span>Thực đơn healthy, fusion hoặc theo chế độ ăn uống riêng.</span></li>
+        <li class="hover-target"><strong>Concierge Care</strong><span>Chăm sóc y tế dự phòng và bảo quản tư trang an toàn.</span></li>
+      </ul>
+    </div>
+    <!-- KHU VỰC CẬP NHẬT GIÁ MỚI -->
+    <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4">
+      <p class="q">Bạn chọn mức giá, còn hành trình bí mật hãy để chúng tôi lo.</p>
+      <div class="pricing-grid">
+        <div class="price-card hover-target">
+          <h3>Tour Trong Ngày</h3>
+          <div class="price">800.000 <span>VNĐ/ngày</span></div>
+          <p>Một hành trình vừa đủ để bạn tạm rời xa những bộn bề thường nhật. Bạn không cần biết trước điểm đến, chỉ cần mang theo tâm thế thoải mái và sẵn sàng khám phá. Lịch trình được thiết kế nhẹ nhàng, ưu tiên nghỉ ngơi, thư giãn và kết nối với thiên nhiên.</p>
+          <a class="btn" style="width: 100%;" href="#dat-tour">Chọn Gói Này</a>
+        </div>
+        <div class="price-card hover-target">
+          <h3>Tour 2 Ngày 1 Đêm</h3>
+          <div class="price">1.500.000 <span>VNĐ/ngày</span></div>
+          <p>Một phiên bản trọn vẹn hơn cho những ai muốn dành một ngày thật sự cho bản thân. Hành trình được chăm chút với nhiều trải nghiệm chữa lành và những bất ngờ thú vị trên đường đi. Bạn vẫn không biết điểm đến cho đến phút cuối, nhưng có thể yên tâm tận hưởng từng khoảnh khắc.</p>
+          <a class="btn" style="width: 100%;" href="#dat-tour">Chọn Gói Này</a>
+        </div>
+      </div>
+      <div class="price-note hover-target">
+        <span class="price-note-mark">✦</span>
+        <p>Không cần lên kế hoạch, không cần lựa chọn – chỉ cần bước lên và tận hưởng hành trình dành riêng cho bạn.</p>
+        <span class="price-note-mark">✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHU VỰC CẬP NHẬT NỘI DUNG MỚI: BỘ SƯU TẬP TRỊ LIỆU -->
+<section id="tour">
+  <div class="wrap reveal-up">
+    <h2>Bộ sưu tập Trị liệu</h2>
+    <p class="lead">Cuộc sống hối hả đôi khi khiến ta quên mất việc lắng nghe chính mình. Mỗi gói trải nghiệm tại đây được thiết kế riêng như một liệu pháp vỗ về tâm hồn và tái tạo năng lượng. Dù bạn đang tìm kiếm sự tĩnh lặng sâu lắng hay không gian gắn kết ấm áp, thiên nhiên luôn có một nốt trầm xao xuyến dành riêng cho bạn. Cùng chậm lại một nhịp và khám phá giai điệu vỗ về tâm trí bạn hôm nay.</p>
+    
+    <div class="lux-grid">
+      <!-- Mộc & Thiền -->
+      <article class="lux-card hover-target">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Mộc và Thiền" class="lux-img">
+        <div class="lux-content">
+          <h3>Mộc & Thiền</h3>
+          <small>Forest Therapy • 1 Day</small>
+          <ul>
+            <li>Thu mình vào khoảng không gian xanh ngát để tìm lại sự bình yên vốn có trong tâm trí.</li>
+            <li>Lắng nghe nhịp thở hòa cùng tiếng suối reo và tiếng bước chân nhẹ nhàng trên thảm lá.</li>
+            <li>Để thiên nhiên vỗ về, rũ bỏ mọi mệt mỏi và tái tạo nguồn năng lượng tích cực từ bên trong.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Nắng & Gió -->
+      <article class="lux-card hover-target">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Nắng và Gió" class="lux-img" loading="lazy">
+        <div class="lux-content">
+          <h3>Nắng & Gió</h3>
+          <small>Soft Outdoor • 1-2 Days</small>
+          <ul>
+            <li>Thả lỏng cơ thể giữa không gian bao la và đón nhận làn gió mát lành vây quanh.</li>
+            <li>Tận hưởng những hoạt động ngoài trời nhẹ nhàng, tự do chạy nhảy hay đơn giản là ngắm hoàng hôn.</li>
+            <li>Đánh thức các giác quan và cảm nhận sự tự do, khoáng đạt trong từng khoảnh khắc.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Trà & Gốm -->
+      <article class="lux-card hover-target">
+        <img src="https://images.unsplash.com/photo-1523301343968-6a6ebf63c672?auto=format&fit=crop&w=600&q=80" alt="Trà và Gốm" class="lux-img">
+        <div class="lux-content">
+          <h3>Trà & Gốm</h3>
+          <small>Craft & Bond • 1 Day</small>
+          <ul>
+            <li>Chậm lại một nhịp để chạm vào chất liệu gốm thô mộc và tự tay chạm khắc nên những ký ức.</li>
+            <li>Gắn kết sâu sắc hơn với những người thân yêu qua từng tách trà chiều ngát hương.</li>
+            <li>Cảm nhận niềm vui đơn sơ từ sự sáng tạo và nuôi dưỡng sự tinh tế trong từng giác quan.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Tổ Ấm Xanh -->
+      <article class="lux-card lux-card-wide hover-target">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80" alt="Tổ Ấm Xanh" class="lux-img">
+        <div class="lux-content">
+          <h3>Tổ Ấm Xanh</h3>
+          <small>Family Retreat • 1 Day</small>
+          <ul>
+            <li>Tạo dựng không gian an lành, ấm áp dành riêng cho các thế hệ trong gia đình cùng sum vầy.</li>
+            <li>Mang đến những khoảnh khắc vui chơi rộn rã cho trẻ nhỏ và sự thư thái cho người lớn tuổi.</li>
+            <li>Lưu giữ trọn vẹn những kỷ niệm đong đầy yêu thương giữa thiên nhiên chan hòa.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- KHU VỰC CẬP NHẬT NỘI DUNG MỚI: KHOẢNH KHẮC BÌNH YÊN -->
+<section id="thu-gian">
+  <div class="wrap reveal-up">
+    <h2>Khoảnh khắc Bình yên</h2>
+    <p class="lead">Dừng chân tại mỗi trạm dừng, bạn sẽ cảm nhận được sự vỗ về dịu dàng từ thiên nhiên nguyên sơ. Những liệu pháp spa độc đáo được chắt lọc kỹ lưỡng để giúp bạn giải phóng mọi căng thẳng và mệt mỏi đọng lại. Hãy để hương thơm thảo mộc cùng dòng chảy năng lượng lành mạnh giúp cơ thể bạn được thả lỏng hoàn toàn. Đây là khoảng thời gian quý giá để bạn tái tạo trọn vẹn cả thân - tâm - trí.</p>
+    
+    <div class="lux-grid">
+      <!-- Forest Bathing -->
+      <article class="lux-card hover-target">
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80" alt="Forest Bathing" class="lux-img">
+        <div class="lux-content">
+          <h3>Forest Bathing</h3>
+          <small>Tắm rừng</small>
+          <ul>
+            <li>Đắm mình vào không gian xanh ngát của rừng già và hít thở sâu bầu không khí nguyên sơ.</li>
+            <li>Lắng nghe âm thanh dịu êm của cỏ cây, để hương thơm tự nhiên xoa dịu từng tế bào.</li>
+            <li>Giải phóng mọi căng thẳng, tìm lại sự kết nối nguyên bản và năng lượng sống dồi dào.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Zen Head Spa -->
+      <article class="lux-card hover-target">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Zen Head Spa" class="lux-img">
+        <div class="lux-content">
+          <h3>Zen Head Spa</h3>
+          <small>Gội đầu dưỡng sinh & Khai thông</small>
+          <ul>
+            <li>Kết hợp kỹ thuật ấn nắn chuyên sâu với thảo mộc tự nhiên khai thông huyệt đạo vùng đầu.</li>
+            <li>Cung cấp dưỡng chất nuôi tóc chắc khỏe, xua tan nhanh chóng cảm giác đau nhức, mệt mỏi.</li>
+            <li>Thả lỏng toàn bộ tinh thần để chìm vào giấc ngủ ngắn êm đềm, sảng khoái.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Herbal Soak -->
+      <article class="lux-card hover-target">
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Herbal Soak" class="lux-img">
+        <div class="lux-content">
+          <h3>Herbal Soak</h3>
+          <small>Liệu pháp ngâm chân thảo mộc</small>
+          <ul>
+            <li>Ngâm chân trong làn nước ấm quyện cùng các loại thảo mộc cổ truyền từ thiên nhiên.</li>
+            <li>Dòng nhiệt dịu nhẹ kích thích tuần hoàn máu, xoa dịu đôi chân mỏi sau ngày dài di chuyển.</li>
+            <li>Hương thơm tự nhiên lan tỏa giúp cân bằng thân nhiệt và mang lại cảm giác thư thái tuyệt đối.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Sound Healing -->
+      <article class="lux-card lux-card-wide hover-target">
+        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=80" alt="Sound Healing" class="lux-img">
+        <div class="lux-content">
+          <h3>Sound Healing</h3>
+          <small>Tắm âm thanh chuông xoay</small>
+          <ul>
+            <li>Thả lỏng cơ thể trên thảm và đón nhận tần số âm thanh ngân vang thanh khiết từ chuông xoay.</li>
+            <li>Từng sóng âm dịu nhẹ thẩm thấu sâu, xoa dịu tổn thương và xóa tan mọi suy nghĩ bộn bề.</li>
+            <li>Đưa tâm trí vào trạng thái thiền định sâu, tìm lại sự an yên và phục hồi nội tại.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="an-toan">
+  <div class="wrap reveal-up">
+    <h2>Sự An tâm Tuyệt đối</h2>
+    <details class="hover-target">
+      <summary>Mức độ an toàn của điểm đến bí mật?</summary>
+      <p>Chúng tôi chọn các resort, khu sinh thái có an ninh 24/7. Mọi cung đường đều được tiền trạm kỹ lưỡng về địa hình và y tế dự phòng.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Nếu tôi có chế độ ăn kiêng (Vegan/Keto)?</summary>
+      <p>Ghi chú trong form đặt lịch. Bếp trưởng tại điểm đến sẽ chuẩn bị thực đơn riêng biệt, đảm bảo ngon miệng và đúng chuẩn y khoa cho bạn.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Nếu tôi có bệnh nền hoặc đang mang thai?</summary>
+      <p>Form đặt lịch có mục khai báo sức khỏe bảo mật. Đội ngũ sẽ chủ động loại trừ các hoạt động không phù hợp (leo núi, lội nước sâu...) và báo trước cho bạn mức độ vận động của chuyến đi mà không tiết lộ địa điểm.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Chuyện gì xảy ra nếu tôi muốn dừng giữa chừng?</summary>
+      <p>Luôn có phương tiện hộ tống (xe/cano dự phòng) túc trực xuyên suốt hành trình. Bạn có thể yêu cầu rút lui bất cứ lúc nào mà không cần giải thích.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Tôi có được liên lạc với người thân trong lúc đi không?</summary>
+      <p>Có. Đây là mù tour về điểm đến, không phải mù tour về sự an toàn. Bạn luôn giữ điện thoại, có thể gọi về nhà bất cứ lúc nào — chỉ là bạn sẽ không biết trước mình đang ở đâu cho đến khi đặt chân tới.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Nếu thời tiết xấu vào ngày khởi hành?</summary>
+      <p>Đội vận hành theo dõi thời tiết 48h trước giờ xuất phát. Nếu có rủi ro, chúng tôi chủ động đổi điểm đến dự phòng (trong cùng ngân sách) hoặc hoàn 100% chi phí — bạn vẫn không cần biết phương án B là gì cho đến phút chót.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Ai sẽ đồng hành cùng tôi suốt chuyến đi?</summary>
+      <p>Một hướng dẫn viên được đào tạo sơ cấp cứu đi cùng toàn bộ hành trình, cộng với mạng lưới đối tác địa phương đã được xác minh tại từng điểm đến.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Tôi có được biết điểm đến trước chuyến đi không?</summary>
+      <p>Điểm đến chính là bí mật làm nên trải nghiệm của Mù Tour, vì vậy chúng tôi sẽ không tiết lộ trước. Tuy nhiên, bạn sẽ được cung cấp đầy đủ những thông tin cần thiết về thời gian, hành lý và yêu cầu sức khỏe trước chuyến đi.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Nếu tôi không thích hoặc không phù hợp với hoạt động trong tour thì sao?</summary>
+      <p>Bạn hoàn toàn có thể thông báo với hướng dẫn viên nếu cảm thấy không thoải mái hoặc không muốn tham gia một hoạt động. Chúng tôi luôn ưu tiên sự thoải mái và an toàn của bạn hơn việc phải hoàn thành toàn bộ lịch trình.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Tôi có thể đi Mù Tour một mình không?</summary>
+      <p>Hoàn toàn có thể! Mù Tour phù hợp cả với khách đi một mình lẫn nhóm bạn, và chúng tôi sẽ sắp xếp trải nghiệm phù hợp với từng hình thức đăng ký.</p>
+    </details>
+    <details class="hover-target">
+      <summary>Nếu thời tiết xấu hoặc có sự cố bất ngờ thì chuyến đi có bị hủy không?</summary>
+      <p>Trong trường hợp thời tiết hoặc điều kiện thực tế không đảm bảo an toàn, lịch trình có thể được điều chỉnh hoặc thay đổi điểm đến. Mọi quyết định đều được cân nhắc dựa trên yếu tố an toàn và trải nghiệm của khách hàng.</p>
+    </details>
+  </div>
+</section>
+
+<section id="dat-tour" role="dialog" aria-modal="true" aria-labelledby="formTitle" aria-hidden="true">
+  <div class="wrap">
+    <button class="pkg-close hover-target" type="button" id="formClose" aria-label="Đóng">×</button>
+    <h2 id="formTitle">Gửi gắm Hành trình</h2>
+    <div class="chosen" id="chosenPkg"><span>Gói đã chọn: <b id="chosenName">—</b></span><button type="button" class="hover-target" id="changePkg">Đổi gói</button></div>
+    <p class="lead">Hãy để lại thông tin, đội ngũ tư vấn sẽ liên hệ để thiết kế riêng cho bạn.</p>
+    <form id="f" novalidate>
+      <!-- Chống spam (ẩn) -->
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+      <label>Danh xưng của bạn<input required name="ho_ten" autocomplete="name" placeholder="Tên của bạn..."></label>
+      <label>Số điện thoại<input required name="so_dien_thoai" type="tel" autocomplete="tel" inputmode="tel" placeholder="09xx..."></label>
+      <label class="full-col">Email của bạn (để nhận mã QR thanh toán)<input required name="email" type="email" autocomplete="email" placeholder="ten@email.com"></label>
+      <label>Quy mô nhóm<input required name="quy_mo_nhom" type="number" min="1" value="2"></label>
+      <label>Cảm xúc mong muốn
+        <select name="trai_nghiem">
+          <option>Mộc & Thiền (Chữa lành)</option>
+          <option>Nắng & Gió (Vận động nhẹ)</option>
+          <option>Trà & Gốm (Bạn bè/Thủ công)</option>
+          <option>Tổ Ấm Xanh (Gia đình)</option>
+        </select>
+      </label>
+      <input type="hidden" name="goi_tour" id="goiTour" value="">
+      <label class="full-col">Ghi chú riêng (chế độ ăn, sức khỏe – được bảo mật)
+        <textarea name="ghi_chu" rows="3" placeholder="Ví dụ: ăn chay, dị ứng hải sản, đang mang thai, có bệnh nền... (không bắt buộc)"></textarea>
+      </label>
+      <div class="full">
+        <button class="btn hover-target" type="submit" id="submitBtn">Gửi Yêu Cầu</button>
+        <span id="ok" role="status" aria-live="polite">Đã nhận lời nhắn. Mã QR thanh toán sẽ được gửi về email của bạn!</span>
+        <span id="err" role="alert"></span>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- BẢNG CHỌN GÓI TOUR -->
+<div class="pkg-modal" id="pkgModal" role="dialog" aria-modal="true" aria-labelledby="pkgTitle" aria-hidden="true">
+  <div class="pkg-box">
+    <button class="pkg-close hover-target" type="button" id="pkgClose" aria-label="Đóng">×</button>
+    <h3 id="pkgTitle">Chọn gói hành trình</h3>
+    <p>Bạn chọn mức giá, còn điểm đến bí mật hãy để chúng tôi lo.</p>
+    <div class="pkg-options">
+      <button class="pkg-opt hover-target" type="button" data-pkg="Tour Trong Ngày">
+        <span class="n">Tour Trong Ngày</span>
+        <span class="p">800.000 <small>VNĐ/ngày</small></span>
+        <span class="d">Hành trình vừa đủ để tạm rời xa bộn bề thường nhật, nhẹ nhàng, ưu tiên nghỉ ngơi và kết nối thiên nhiên.</span>
+        <span class="go">Chọn gói này</span>
+      </button>
+      <button class="pkg-opt hover-target" type="button" data-pkg="Tour 2 Ngày 1 Đêm">
+        <span class="n">Tour 2 Ngày 1 Đêm</span>
+        <span class="p">1.500.000 <small>VNĐ/ngày</small></span>
+        <span class="d">Phiên bản trọn vẹn hơn với nhiều trải nghiệm chữa lành và những bất ngờ thú vị trên đường đi.</span>
+        <span class="go">Chọn gói này</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Đi Rồi Biết – HCMC Boutique Mystery Tour.</span>
+    <span>Liên hệ: <a href="mailto:mutourmarketing@gmail.com" class="hover-target">mutourmarketing@gmail.com</a></span>
+  </div>
+  <div class="social">
+    <img class="brand-logo footer-logo" src="logo.png" alt="Logo Đi Rồi Biết" width="84" height="84" loading="lazy">
+    <span class="social-title">Kết nối cùng Đi Rồi Biết</span>
+    <div class="social-row">
+    <a class="social-link hover-target" href="https://www.facebook.com/profile.php?id=61594759265972" target="_blank" rel="noopener noreferrer" aria-label="Facebook Đi Rồi Biết" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a class="social-link hover-target" href="https://www.tiktok.com/@mutourhcmussh" target="_blank" rel="noopener noreferrer" aria-label="TikTok Đi Rồi Biết" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+    <a class="social-link hover-target" href="https://www.instagram.com/diroibietahihihi" target="_blank" rel="noopener noreferrer" aria-label="Instagram Đi Rồi Biết" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a class="social-link hover-target" href="https://www.youtube.com/@marketingdulich_ussh" target="_blank" rel="noopener noreferrer" aria-label="YouTube Đi Rồi Biết" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. SINH HỆ THỐNG BỌT KHÍ SÂM-PANH (50 hạt)
+  const particlesContainer = document.getElementById('particles');
+  for(let i = 0; i < 50; i++) { 
+    let wrapper = document.createElement('div');
+    wrapper.classList.add('bubble-container');
+    
+    let bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    
+    let size = Math.random() * 10 + 4; 
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    
+    wrapper.style.left = Math.random() * 100 + 'vw';
+    
+    wrapper.style.animationDuration = (Math.random() * 12 + 8) + 's';
+    wrapper.style.animationDelay = (Math.random() * 10) + 's';
+    
+    bubble.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+    
+    wrapper.appendChild(bubble);
+    particlesContainer.appendChild(wrapper);
+  }
+
+  // 2. JS Render Loop cho Chuột và Parallax Nền
+  const cursorGlow = document.getElementById('cursorGlow');
+  const blobs = [
+    document.getElementById('b1'), 
+    document.getElementById('b2'), 
+    document.getElementById('b3'),
+    document.getElementById('b4'),
+    document.getElementById('b5')
+  ];
+  
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let glowX = mouseX;
+  let glowY = mouseY;
+  
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  function renderLoop() {
+    glowX += (mouseX - glowX) * 0.15;
+    glowY += (mouseY - glowY) * 0.15;
+    
+    if(cursorGlow) {
+      cursorGlow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+    }
+
+    const xOffset = (mouseX / window.innerWidth - 0.5) * 50;
+    const yOffset = (mouseY / window.innerHeight - 0.5) * 50;
+    
+    if(blobs[0]) blobs[0].style.transform = `translate3d(${-xOffset * 0.4}px, ${-yOffset * 0.4}px, 0)`;
+    if(blobs[1]) blobs[1].style.transform = `translate3d(${-xOffset * 0.7}px, ${-yOffset * 0.7}px, 0)`;
+    if(blobs[2]) blobs[2].style.transform = `translate3d(${-xOffset * 1.0}px, ${-yOffset * 1.0}px, 0)`;
+    if(blobs[3]) blobs[3].style.transform = `translate3d(${-xOffset * 0.5}px, ${-yOffset * 0.5}px, 0)`;
+    if(blobs[4]) blobs[4].style.transform = `translate3d(${-xOffset * 0.8}px, ${-yOffset * 0.8}px, 0)`;
+
+    requestAnimationFrame(renderLoop);
+  }
+  
+  // 3. Hiệu ứng Hover Premium Pass 3D + Glare (Quét Sáng)
+  const ticketWrapper = document.querySelector('.ticket-wrapper');
+  const ticketInner = document.querySelector('.ticket');
+  
+  if(window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    requestAnimationFrame(renderLoop);
+    
+    if(ticketWrapper && ticketInner) {
+      ticketWrapper.addEventListener('mousemove', (e) => {
+        const rect = ticketWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -15;
+        const rotateY = ((x - centerX) / centerX) * 15;
+        
+        ticketInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        
+        // Cập nhật vị trí ánh sáng (Glare)
+        ticketInner.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+        ticketInner.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+      });
+
+      ticketWrapper.addEventListener('mouseleave', () => {
+        ticketInner.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        ticketInner.style.transition = `transform 0.5s ease, box-shadow 0.4s ease, border-color 0.4s ease`;
+      });
+
+      ticketWrapper.addEventListener('mouseenter', () => {
+        ticketInner.style.transition = `box-shadow 0.4s ease, border-color 0.4s ease`; 
+      });
+    }
+
+  } else {
+    cursorGlow.style.display = 'none';
+  }
+
+  // 4. Hover Effects cơ bản
+  const hoverTargets = document.querySelectorAll('.hover-target, button, a, .lux-card');
+  hoverTargets.forEach(target => {
+    target.addEventListener('mouseenter', () => cursorGlow.classList.add('hovered'));
+    target.addEventListener('mouseleave', () => cursorGlow.classList.remove('hovered'));
+  });
+
+
+  // 4b. Nhấn vào thẻ để xem chi tiết + ảnh dự phòng
+  document.querySelectorAll('.lux-card').forEach(card => {
+    const content = card.querySelector('.lux-content');
+    const more = document.createElement('div');
+    more.className = 'lux-more';
+    more.innerHTML = '<span class="plus">+</span><span class="txt">Nhấn để xem chi tiết</span>';
+    content.appendChild(more);
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-expanded', 'false');
+    const toggle = () => {
+      const on = card.classList.toggle('open');
+      card.setAttribute('aria-expanded', on ? 'true' : 'false');
+      more.querySelector('.txt').textContent = on ? 'Thu gọn' : 'Nhấn để xem chi tiết';
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    const img = card.querySelector('.lux-img');
+    if (img) {
+      const fallback = () => { img.removeAttribute('src'); img.style.background = 'linear-gradient(135deg,#f3e3c8,#e8d2b4)'; };
+      img.addEventListener('error', fallback, { once: true });
+      if (img.complete && img.naturalWidth === 0) fallback();
+    }
+  });
+
+  // 5. Logic chức năng web
+  const t = document.getElementById('ticket'), b = document.getElementById('peek');
+  b.addEventListener('click', () => {
+    const on = t.classList.toggle('reveal');
+    b.textContent = on ? 'Khóa thông tin' : 'Giải mã vé';
+  });
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(x => {
+    x.addEventListener('click', () => {
+      tabs.forEach(y => {
+        y.setAttribute('aria-selected', y === x ? 'true' : 'false');
+        document.getElementById(y.getAttribute('aria-controls')).classList.toggle('on', y === x);
+      });
+    });
+  });
+
+  // ===== GỬI FORM VỀ EMAIL =====
+  // Form gửi qua FormSubmit.co về hộp thư bên dưới (không cần máy chủ riêng).
+  const NHAN_THONG_TIN = 'mutourmarketing@gmail.com';
+  // Ảnh QR thanh toán: file qr-thanh-toan.jpg nằm cùng thư mục với trang này.
+  // Khi trang đã được đưa lên web (https://...), link ảnh sẽ tự được tạo và gửi trong email cho khách.
+  // Nếu muốn dùng link ảnh khác (Drive/Imgur...), điền thẳng vào dấu '' bên dưới.
+  const QR_TUY_CHINH = '';
+  const LINK_MA_QR = QR_TUY_CHINH || (/^https?:$/.test(location.protocol) ? new URL('qr-thanh-toan.jpg', location.href).href : '');
+
+  const form = document.getElementById('f');
+  const okMsg = document.getElementById('ok');
+  const errMsg = document.getElementById('err');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    okMsg.style.display = 'none';
+    errMsg.style.display = 'none';
+    if (!form.reportValidity()) return;
+
+    const d = Object.fromEntries(new FormData(form).entries());
+    if (d._honey) return; // bot
+    if (!d.goi_tour) { openPkg(); return; } // chưa chọn gói → mở bảng chọn gói
+
+    const qrDong = LINK_MA_QR
+      ? 'Để hoàn tất đặt chỗ, bạn mở link sau để xem mã QR và thanh toán (VietQR – MB Bank, chủ tài khoản NGUYEN NGOC THUY TRANG): ' + LINK_MA_QR + ' — Nội dung chuyển khoản: ' + d.ho_ten + ' ' + d.so_dien_thoai + '.'
+      : 'Đội ngũ sẽ gửi mã QR thanh toán đến email này trong vòng 24 giờ.';
+
+    const payload = {
+      _subject: 'Yêu cầu hành trình mới từ ' + d.ho_ten + ' – Đi Rồi Biết',
+      _template: 'table',
+      _captcha: 'false',
+      _autoresponse: 'Chào ' + d.ho_ten + ', Đi Rồi Biết đã nhận được yêu cầu "' + d.trai_nghiem + '" (' + d.goi_tour + ') cho nhóm ' + d.quy_mo_nhom + ' người. ' + qrDong + ' Cảm ơn bạn đã tin tưởng gửi gắm hành trình!',
+      'Họ tên': d.ho_ten,
+      'Số điện thoại': d.so_dien_thoai,
+      'Email khách (gửi QR về đây)': d.email,
+      'Quy mô nhóm': d.quy_mo_nhom,
+      'Trải nghiệm mong muốn': d.trai_nghiem,
+      'Gói hành trình': d.goi_tour,
+      'Ghi chú (ăn uống/sức khỏe)': d.ghi_chu || '(không có)',
+      email: d.email
+    };
+
+    const oldText = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Đang gửi...';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/' + NHAN_THONG_TIN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === 'false' || data.success === false) throw new Error(data.message || 'send failed');
+      okMsg.style.display = 'inline-block';
+      form.reset();
+      form.quy_mo_nhom.value = 2;
+    } catch (err) {
+      errMsg.innerHTML = 'Chưa gửi được. Bạn thử lại hoặc nhắn trực tiếp qua <a href="mailto:' + NHAN_THONG_TIN + '">' + NHAN_THONG_TIN + '</a> nhé.';
+      errMsg.style.display = 'inline-block';
+    } finally {
+      btn.disabled = false; btn.textContent = oldText;
+    }
+  });
+
+  // ===== BẢNG CHỌN GÓI TOUR =====
+  const pkgModal = document.getElementById('pkgModal');
+  const goiTour = document.getElementById('goiTour');
+  const pkgOpts = pkgModal.querySelectorAll('.pkg-opt');
+  const openPkg = (pre) => {
+    pkgOpts.forEach(o => o.classList.toggle('pre', !!pre && o.dataset.pkg === pre));
+    pkgModal.classList.add('on');
+    pkgModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    (pkgModal.querySelector('.pkg-opt.pre') || pkgOpts[0]).focus();
+  };
+  const closePkg = () => {
+    pkgModal.classList.remove('on');
+    pkgModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = document.getElementById('dat-tour').classList.contains('on') ? 'hidden' : '';
+  };
+  // ----- Cửa sổ "Gửi gắm Hành trình" -----
+  const formModal = document.getElementById('dat-tour');
+  const chosenName = document.getElementById('chosenName');
+  const GIA = { 'Tour Trong Ngày': '800.000 VNĐ/ngày', 'Tour 2 Ngày 1 Đêm': '1.500.000 VNĐ/ngày' };
+  const openForm = (pkg) => {
+    goiTour.value = pkg;
+    chosenName.textContent = pkg + ' – ' + GIA[pkg];
+    formModal.classList.add('on');
+    formModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const first = form.querySelector('input[name="ho_ten"]');
+    if (first) setTimeout(() => first.focus({ preventScroll: true }), 50);
+  };
+  const closeForm = () => {
+    formModal.classList.remove('on');
+    formModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('a[href="#dat-tour"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const card = a.closest('.price-card');
+      if (card) {
+        // "Chọn Gói Này": vào thẳng form, gói đã được chọn theo thẻ
+        const h = card.querySelector('h3').textContent.trim().toLowerCase();
+        openForm(h.includes('2 ngày') ? 'Tour 2 Ngày 1 Đêm' : 'Tour Trong Ngày');
+      } else {
+        // "Đặt lịch ngay": chọn tour trước, rồi mới ra form
+        openPkg();
+      }
+    });
+  });
+  pkgOpts.forEach(o => o.addEventListener('click', () => {
+    closePkg();
+    openForm(o.dataset.pkg);
+  }));
+  document.getElementById('pkgClose').addEventListener('click', closePkg);
+  document.getElementById('formClose').addEventListener('click', closeForm);
+  document.getElementById('changePkg').addEventListener('click', () => openPkg(goiTour.value));
+  pkgModal.addEventListener('click', e => { if (e.target === pkgModal) closePkg(); });
+  formModal.addEventListener('click', e => { if (e.target === formModal) closeForm(); });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (pkgModal.classList.contains('on')) closePkg();
+    else if (formModal.classList.contains('on')) closeForm();
+  });
+
+  const revealElements = document.querySelectorAll('.reveal-up');
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+  
+  revealElements.forEach(el => revealObserver.observe(el));
+  
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.style.background = 'rgba(255, 255, 255, 0.9)';
+      header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.05)';
+    } else {
+      header.style.background = 'rgba(255, 255, 255, 0.6)';
+      header.style.boxShadow = 'none';
+    }
+  }, { passive: true });
+});
+</script>
+</body>
+</html>
